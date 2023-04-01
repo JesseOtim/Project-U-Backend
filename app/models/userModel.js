@@ -1,18 +1,42 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+import validator from "validator";
 
-const User = mongoose.model(
-  "User",
-  new mongoose.Schema({
-    username: String,
-    email: String,
-    password: String,
-    roles: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Role"
+const Schema = mongoose.Schema;
+
+const userSchema = new Schema({
+  firstname: {
+    type: String,
+    trim: true,
+    lowercase: true,
+  },
+  lastname: {
+    type: String,
+    trim: true,
+    lowercase: true,
+  },
+  email: {
+    type: String,
+    lowercase: true,
+    trim: true,
+    required: true,
+    unique: true,
+    validate(value) {
+      if (!validator.isEmail(value)) {
+        throw new Error("Invalid Email Address");
       }
-    ]
-  })
-);
+    },
+  },
+  password: {
+    type: String,
+  },
+  role: {
+    type: String,
+    default: "user",
+    lowercase: true,
+    trim: true,
+  },
+});
 
-module.exports = User;
+const User = mongoose.model("user", userSchema);
+
+export default User;

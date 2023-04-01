@@ -1,91 +1,50 @@
-const express = require("express");
-const cors = require("cors");
-const cookieSession = require("cookie-session");
-const db = require("./app/models");
+import '@babel/polyfill';
+import express from 'express';
+import dotenv from 'dotenv';
+import bodyParser from 'body-parser';
+import router from './app/routes/routes';
+import connection from './app/connection';
+import cors from 'cors';
+
+dotenv.config();
 
 const app = express();
-
-var corsOptions = {
-  origin: "http://localhost:8081"
-};
-
-app.use(cors(corsOptions));
-
-
-const Role = db.role;
-
-db.mongoose
-  .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => {
-    console.log("Successfully connect to MongoDB.");
-    initial();
-  })
-  .catch(err => {
-    console.error("Connection error", err);
-    process.exit();
-  });
-
-function initial() {
-  Role.estimatedDocumentCount((err, count) => {
-    if (!err && count === 0) {
-      new Role({
-        name: "user"
-      }).save(err => {
-        if (err) {
-          console.log("error", err);
-        }
-
-        console.log("added 'user' to roles collection");
-      });
-
-      new Role({
-        name: "moderator"
-      }).save(err => {
-        if (err) {
-          console.log("error", err);
-        }
-
-        console.log("added 'moderator' to roles collection");
-      });
-
-      new Role({
-        name: "admin"
-      }).save(err => {
-        if (err) {
-          console.log("error", err);
-        }
-
-        console.log("added 'admin' to roles collection");
-      });
-    }
-  });
+const { PORT } = process.env;
+const database_ip = process.env.IP;
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
 }
 
-
-// parse requests of content-type - application/json
+app.use(cors(corsOptions))
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(router);
 
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
-
-app.use(
-  cookieSession({
-    name: "bezkoder-session",
-    secret: "COOKIE_SECRET", // should use as secret environment variable
-    httpOnly: true
-  })
-);
-
-// simple route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to project U backend application." });
+//Home route
+app.get('/', (req, res) => {
+    return res.status(200).send({
+      status: 200,
+      message: 'warming up at Port 5000'
+    });
 });
 
-// set port, listen for requests
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
-});
+// wrong route
+app.use((req, res) => res.status(405).send({
+    'status': 405,
+    'error': 'This URL does not exist'
+}));
+
+// server down
+app.use((req, res) => res.status(500).send({
+    'status': 500,
+    'error': 'Oops! The problem is not on your side. Hang on, we will fix this soon'
+}));
+
+// current process environment
+app.listen(PORT || 3000,
+        console.log(`App listening on port ${PORT}!`),
+        database_ip
+    ); 
+
+export default app;
