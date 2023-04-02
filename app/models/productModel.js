@@ -3,6 +3,14 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const bookSchema = new Schema({
+  category: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+    lowercase: true,
+  },
+
   name: {
     type: String,
     required: true,
