@@ -35,6 +35,12 @@ const userSchema = new Schema({
     lowercase: true,
     trim: true,
   },
+  ward: {
+    type: String,
+    default: "user",
+    lowercase: true,
+    trim: true,
+  },
 });
 
 const User = mongoose.model("user", userSchema);
