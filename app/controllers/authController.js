@@ -66,7 +66,8 @@ class AuthController {
       res.send({
         status: 200,
         message: "Logged in successfully",
-        data: token,
+        data: user,
+        token: token,
       });
     } catch (error) {
       return res.status(400).send({
