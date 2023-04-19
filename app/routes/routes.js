@@ -1,6 +1,7 @@
 import express from 'express';
 import ProductController from '../controllers/productController';
 import AuthController from '../controllers/authController';
+import FarmerController from '../controllers/farmerController'
 // import { 
 //     Authenticate, 
 //     verifyAdmin 
