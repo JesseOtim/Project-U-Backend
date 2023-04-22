@@ -4,26 +4,41 @@ import validator from 'validator';
 const Schema = mongoose.Schema;
 
 const farmerSchema = new Schema({
-      fullname:{
+      firstname:{
         type: String,
         trim: true,
         lowercase: true
       },
-      Gender: {
+
+      lastname:{
         type: String,
         trim: true,
         lowercase: true
       },
+
       DOB: {
         type: String,
         required: true,
       },
-      Activities: {
+      periodofstay: {
         type: String,
         trim: true,
         lowercase: true
       },
-      PhoneNumber: {
+
+      dateofregistration: {
+        type: String,
+        trim: true,
+        lowercase: true
+      },
+
+      activities: {
+        type: String,
+        trim: true,
+        lowercase: true
+      },
+
+      Phonenumber: {
         type: String,
         required: true,
         lowercase: true
@@ -34,7 +49,7 @@ const farmerSchema = new Schema({
         required: true,
         lowercase: true
       },
-      Ward: {
+      ward: {
         type: String,
         trim: true,
         required: true,
