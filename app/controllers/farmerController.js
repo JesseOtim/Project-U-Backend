@@ -11,7 +11,7 @@ class FarmerController {
    */
   static async addFarmer(req, res) {
     try {
-      const Farmer = await farmerModel.findOne({ email: req.body.email }).exec();
+      const Farmer = await farmerModel.findOne({ Phonenumber: req.body.Phonenumber }).exec();
       if(Farmer) {
           return res.status(409).send(
             { 
