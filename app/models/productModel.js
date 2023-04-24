@@ -18,7 +18,7 @@ const productSchema = new Schema({
     lowercase: true,
   },
 
-  image: {
+  productimage: {
     type: String,
     required: true,
     unique: true,
