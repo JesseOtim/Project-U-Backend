@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
-
+ft-models
 
   name: {
     type: String,
@@ -20,7 +20,7 @@ const productSchema = new Schema({
     lowercase: true,
   },
 
-  image: {
+  productimage: {
     type: String,
     required: true,
     unique: true,

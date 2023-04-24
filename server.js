@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import router from './app/routes/routes';
 import connection from './app/connection';
 import cors from 'cors';
+import cloudinary from 'cloudinary';
 
 dotenv.config();
 
