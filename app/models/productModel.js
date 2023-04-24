@@ -3,8 +3,6 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
-ft-models
-
   name: {
     type: String,
     required: true,
