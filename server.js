@@ -13,7 +13,7 @@ const app = express();
 const { PORT } = process.env;
 const database_ip = process.env.IP;
 const corsOptions = {
-    origin: 'http://127.0.0.1:5503',
+    origin: '*',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
 }
 
