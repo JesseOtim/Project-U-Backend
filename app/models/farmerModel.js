@@ -16,6 +16,19 @@ const farmerSchema = new Schema({
         lowercase: true
       },
 
+      email:{
+        type: String,
+        trim: true,
+        lowercase: true
+      },
+
+      password:{
+        type: String,
+        trim: true,
+        lowercase: true
+      },
+
+
       DOB: {
         type: String,
         required: true,
