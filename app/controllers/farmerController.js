@@ -16,7 +16,7 @@ class FarmerController {
           return res.status(409).send(
             { 
               status: 409,
-              message: 'Farmer with that email already exists',
+              message: 'Farmer with that Phonenumber already exists',
             }
           );
       }

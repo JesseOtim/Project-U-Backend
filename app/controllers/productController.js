@@ -1,4 +1,6 @@
 import ProductModel from "../models/productModel";
+// import cloudinary from '../cloudinary';
+
 
 class ProductController {
   /**
@@ -18,13 +20,17 @@ class ProductController {
           message: "Product with that name already added",
         });
       }
-      const data = new ProductModel(req.body);
-      await data.save();
-      return res.status(201).send({
-        status: 201,
-        message: "Product successfully added",
-        data,
-      });
+      // const getImage = await cloudinary.uploads(req.body.productimage, 'Assets');
+      // console.log(getImage)
+      // req.body.productimage = getImage.url;
+      
+      // const data = new ProductModel(req.body);
+      // await data.save();
+      // return res.status(201).send({
+      //   status: 201,
+      //   message: "Product successfully added",
+      //   data,
+      // });
     } catch (error) {
       return res.status(400).send({
         status: 400,
