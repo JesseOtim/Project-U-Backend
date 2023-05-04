@@ -11,12 +11,12 @@ class FarmerController {
    */
   static async addFarmer(req, res) {
     try {
-      const Farmer = await farmerModel.findOne({ Phonenumber: req.body.Phonenumber }).exec();
+      const Farmer = await farmerModel.findOne({ email: req.body.email }).exec();
       if(Farmer) {
           return res.status(409).send(
             { 
               status: 409,
-              message: 'Farmer with that Phonenumber already exists',
+              message: 'Farmer with that email already exists',
             }
           );
       }

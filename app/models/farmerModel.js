@@ -16,10 +16,16 @@ const farmerSchema = new Schema({
         lowercase: true
       },
 
-      email:{
+      email: {
         type: String,
+        lowercase: true,
         trim: true,
-        lowercase: true
+        unique: true,
+        validate(value) {
+          if (!validator.isEmail(value)) {
+            throw new Error("Invalid Email Address");
+          }
+        },
       },
 
       password:{
