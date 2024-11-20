@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 dotenv.config();
 
 /**
- * 
+ *
  * @description  create a token
  * @param {object} req the request
  * @param {object} res the response
